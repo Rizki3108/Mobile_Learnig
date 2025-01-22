@@ -8,10 +8,10 @@ import 'package:lottie/lottie.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
-
+  const HomeView({super.key});
   @override
   Widget build(BuildContext context) {
+    HomeController controller = Get.put(HomeController());
     return Scaffold(
       backgroundColor: HexColor('#feeee8'),
       body: Center(

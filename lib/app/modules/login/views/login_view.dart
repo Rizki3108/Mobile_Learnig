@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
+import 'package:mobile_learning/app/modules/register/views/register_view.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -99,10 +100,6 @@ class LoginView extends GetView<LoginController> {
               )
             ],
           ),
-        )
-      );
+        ));
   }
-}
-
-class RegisterView {
 }
