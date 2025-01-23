@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-
-import 'package:lottie/lottie.dart';
 import 'package:mobile_learning/app/data/profile_response.dart';
-import 'package:mobile_learning/app/modules/dashboard/controllers/dashboard_controller.dart';
+import 'package:mobile_learning/app/modules/profile/controllers/profile_controller.dart';
+import 'package:lottie/lottie.dart';
 
-class ProfileView extends GetView {
-  const ProfileView({super.key, required this.id});
-  final int id;
+class ProfileView extends GetView<ProfileController> {
+  @override
+  final ProfileController controller = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
-    final DashboardController controller = Get.put(DashboardController());
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
@@ -26,7 +25,7 @@ class ProfileView extends GetView {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: FutureBuilder<ProfileResponse>(
-            future: controller.getProfile(id: id),
+            future: controller.getProfile(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(

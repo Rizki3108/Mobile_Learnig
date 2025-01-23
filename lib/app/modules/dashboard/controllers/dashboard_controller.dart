@@ -4,10 +4,9 @@ import 'package:get_storage/get_storage.dart';
 
 import 'package:mobile_learning/app/data/detail_event_response.dart';
 import 'package:mobile_learning/app/data/event_response.dart';
-import 'package:mobile_learning/app/data/profile_response.dart';
+import 'package:mobile_learning/app/modules/dashboard/views/profile_view.dart';
 import 'package:mobile_learning/app/utils/api.dart';
 import 'package:mobile_learning/app/modules/dashboard/views/index_view.dart';
-import 'package:mobile_learning/app/modules/dashboard/views/profile_view.dart';
 import 'package:mobile_learning/app/modules/dashboard/views/your_event_view.dart';
 
 class DashboardController extends GetxController {
@@ -28,6 +27,7 @@ class DashboardController extends GetxController {
   final List<Widget> pages = [
     IndexView(),
     YourEventView(),
+    ProfileView(),
   ];
 
   Future<EventClass> getEvent() async {
@@ -178,30 +178,6 @@ class DashboardController extends GetxController {
         colorText: Colors.white,
       );
     }
-  }
-
-  Future<ProfileResponse> getProfile({required int id}) async {
-    try {
-      final response = await _getConnect.get(
-        '${BaseUrl.profile}/$id',
-        headers: {'Authorization': "Bearer $token"},
-        contentType: "application/json",
-      );
-
-      if (response.statusCode == 200) {
-        return ProfileResponse.fromJson(response.body);
-      } else {
-        throw Exception("Failed to load profile: ${response.statusText}");
-      }
-    } catch (e) {
-      print("Error: $e");
-      rethrow;
-    }
-  }
-
-  void logout() {
-    box.remove('token');
-    Get.offAllNamed('/login');
   }
 
   @override
